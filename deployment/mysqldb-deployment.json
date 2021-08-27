@@ -1,0 +1,98 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "annotations": {
+      "kompose.cmd": "kompose convert -j -f docker-compose.yml",
+      "kompose.version": "1.21.0 (992df58d8)"
+    },
+    "creationTimestamp": null,
+    "labels": {
+      "io.kompose.service": "mysqldb"
+    },
+    "name": "mysqldb"
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": {
+      "matchLabels": {
+        "io.kompose.service": "mysqldb"
+      }
+    },
+    "strategy": {
+      "type": "Recreate"
+    },
+    "template": {
+      "metadata": {
+        "annotations": {
+          "kompose.cmd": "kompose convert -j -f docker-compose.yml",
+          "kompose.version": "1.21.0 (992df58d8)"
+        },
+        "creationTimestamp": null,
+        "labels": {
+          "io.kompose.service": "mysqldb"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "MYSQL_DATABASE",
+                "value": "swordhealth_db"
+              },
+              {
+                "name": "MYSQL_PASSWORD",
+                "value": "tD9nj65aWYcd7\u003c9}H"
+              },
+              {
+                "name": "MYSQL_ROOT_PASSWORD",
+                "value": "tD9nj65aWYcd7\u003c9}H"
+              },
+              {
+                "name": "MYSQL_USER",
+                "value": "swordhealth_user"
+              }
+            ],
+            "image": "mysql:8.0.19",
+            "imagePullPolicy": "",
+            "name": "database-node",
+            "ports": [
+              {
+                "containerPort": 3306
+              }
+            ],
+            "resources": {},
+            "volumeMounts": [
+              {
+                "mountPath": "/etc/mysql",
+                "name": "db-configuration"
+              },
+              {
+                "mountPath": "/var/lib/mysql",
+                "name": "db-swordhealth"
+              }
+            ]
+          }
+        ],
+        "restartPolicy": "Always",
+        "serviceAccountName": "",
+        "volumes": [
+          {
+            "name": "db-configuration",
+            "persistentVolumeClaim": {
+              "claimName": "db-configuration"
+            }
+          },
+          {
+            "name": "db-swordhealth",
+            "persistentVolumeClaim": {
+              "claimName": "db-swordhealth"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "status": {}
+}

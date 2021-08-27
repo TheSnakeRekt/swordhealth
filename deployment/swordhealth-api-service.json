@@ -1,0 +1,35 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "swordhealth-api",
+    "creationTimestamp": null,
+    "labels": {
+      "io.kompose.service": "swordhealth-api"
+    },
+    "annotations": {
+      "kompose.cmd": "kompose convert -j -f docker-compose.yml",
+      "kompose.version": "1.21.0 (992df58d8)"
+    }
+  },
+  "spec": {
+    "ports": [
+      {
+        "name": "3000",
+        "port": 3000,
+        "targetPort": 3000
+      },
+      {
+        "name": "8100",
+        "port": 8100,
+        "targetPort": 8100
+      }
+    ],
+    "selector": {
+      "io.kompose.service": "swordhealth-api"
+    }
+  },
+  "status": {
+    "loadBalancer": {}
+  }
+}

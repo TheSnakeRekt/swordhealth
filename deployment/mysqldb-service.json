@@ -1,0 +1,30 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "mysqldb",
+    "creationTimestamp": null,
+    "labels": {
+      "io.kompose.service": "mysqldb"
+    },
+    "annotations": {
+      "kompose.cmd": "kompose convert -j -f docker-compose.yml",
+      "kompose.version": "1.21.0 (992df58d8)"
+    }
+  },
+  "spec": {
+    "ports": [
+      {
+        "name": "3306",
+        "port": 3306,
+        "targetPort": 3306
+      }
+    ],
+    "selector": {
+      "io.kompose.service": "mysqldb"
+    }
+  },
+  "status": {
+    "loadBalancer": {}
+  }
+}

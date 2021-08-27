@@ -1,0 +1,22 @@
+{
+  "kind": "PersistentVolumeClaim",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "db-swordhealth",
+    "creationTimestamp": null,
+    "labels": {
+      "io.kompose.service": "db-swordhealth"
+    }
+  },
+  "spec": {
+    "accessModes": [
+      "ReadWriteOnce"
+    ],
+    "resources": {
+      "requests": {
+        "storage": "100Mi"
+      }
+    }
+  },
+  "status": {}
+}

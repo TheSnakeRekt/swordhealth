@@ -36,7 +36,7 @@ services:
       - 8100:8100
     stdin_open: true
     tty: true
-    restart: on-failure:5 
+    restart: always 
   redis:
     container_name: 'redis-node'
     image: redis:alpine
