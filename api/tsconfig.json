@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "experimentalDecorators": true,
+      "target": "es2016",
+      "module": "commonjs",
+      "outDir": "./dist",
+      "baseUrl": "./",
+      "strict": true,
+      "esModuleInterop": true,
+      "inlineSourceMap": true
+    }
+  }

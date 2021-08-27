@@ -1,0 +1,51 @@
+version: '3'
+services:
+  mysqldb:
+    container_name: 'database-node'
+    image: mysql:8.0.19
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=tD9nj65aWYcd7<9}H
+      - MYSQL_DATABASE=swordhealth_db
+      - MYSQL_PASSWORD=tD9nj65aWYcd7<9}H
+      - MYSQL_USER=swordhealth_user
+    ports:
+      - 3306:3306
+    volumes: 
+      - db-configuration:/etc/mysql
+      - db-swordhealth:/var/lib/mysql
+  swordhealth-api:
+    container_name: 'server-node'
+    image: swordhealth-api
+    depends_on:
+      - mysqldb
+      - redis
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    environment:
+      - REDIS_PORT=6380
+      - REDIS_HOST=redis
+      - DATABASE_NAME=swordhealth_db
+      - DATABASE_USER=swordhealth_user
+      - DATABASE_PASSWORD=tD9nj65aWYcd7<9}H
+      - HOSTNAME=mysqldb
+      - BASE_URL=http://localhost:3000
+    ports:
+      - 3000:3000
+      - 8100:8100
+    stdin_open: true
+    tty: true
+    restart: on-failure:5 
+  redis:
+    container_name: 'redis-node'
+    image: redis:alpine
+    command: redis-server --port 6380
+    ports:
+      - "6380:6380"
+    expose: 
+      - 6380
+    restart: always
+volumes:
+  db-configuration:
+  db-swordhealth:
