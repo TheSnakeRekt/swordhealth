@@ -14,7 +14,7 @@ This is a docker container running MySql Redis and Node
       * Returns Authorization header if sucessful;
   * Tasks (Must provide auth token in header)
     - GET: 
-       - Logged in as MANAGER => <br> Returns all Tasks;
+       - Logged in as MANAGER <br>  => Returns all Tasks;
        - Logged in as TECHNICIAN : technicianID <br> => Returns Tasks created by that Technician;
     - POST:
        - Logged in as TECHNICIAN : TaskObject <br> => If no taskId is provided it will create a new task else it will update the one with the same id;
